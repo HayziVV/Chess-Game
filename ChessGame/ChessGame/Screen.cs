@@ -7,16 +7,34 @@ namespace ChessGame
         {
             for (int i = 0; i < board.Row; i++)
             {
-                Console.Write((board.Row - i) + " ");
+                Console.Write(board.Row - i + " ");
                 for (int j = 0; j < board.Row; j++)
                 {
                     if (board.Piece(i, j) == null)
                     {
                         Console.Write("- ");
                     }
-                    Console.Write($"{board.Piece(i, j)} ");
+                    else
+                    {
+                        PrintPiece(board.Piece(i, j));
+                    }
                 }
             Console.WriteLine();
+            }
+            Console.WriteLine("  a  b  c  d  e  f  g  h");
+        }
+        public static void PrintPiece(Piece piece)
+        {
+            if(piece.Color == Color.White)
+            {
+                Console.Write(piece);
+            }
+            else
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write(piece);
+                Console.ForegroundColor = aux;
             }
         }
     }
