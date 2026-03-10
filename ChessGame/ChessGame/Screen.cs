@@ -9,11 +9,11 @@ namespace ChessGame
             {
                 for (int j = 0; j < board.Line; j++)
                 {
-                    if (board.piece(i, j) == null)
+                    if (board.Piece(i, j) == null)
                     {
                         Console.Write("- ");
                     }
-                    Console.Write($"{board.piece(i, j)} ");
+                    Console.Write($"{board.Piece(i, j)} ");
                 }
             Console.WriteLine();
             }
