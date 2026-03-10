@@ -1,20 +1,15 @@
 ﻿namespace ChessGame.board
 {
-    internal class Position
+    internal class Board
     {
         public int Line { get; set; }
         public int Column { get; set; }
+        private Piece[,] Piece;
 
-
-        public Position(int line, int column)
+        public Board(int line, int column)
         {
             Line = line;
             Column = column;
         }
-        public override string ToString()
-        {
-            return $"{Line}, {Column}";
-        }
-
     }
 }
