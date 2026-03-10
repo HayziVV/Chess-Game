@@ -2,26 +2,26 @@
 {
     internal class Board
     {
-        public int Line { get; set; }
+        public int Row { get; set; }
         public int Column { get; set; }
         private Piece[,] Pieces;
 
-        public Board(int line, int column)
+        public Board(int row, int column)
         {
-            Line = line;
+            Row = row;
             Column = column;
-            Pieces = new Piece[Line, Column];
+            Pieces = new Piece[Row, Column];
         }
 
-        public Piece Piece(int line, int column)
+        public Piece Piece(int row, int column)
         {
-            return Pieces[line, column];
+            return Pieces[row, column];
         }
 
         public Piece Piece(Position position)
         {
             
-            return Pieces[position.Line, position.Column];
+            return Pieces[position.Row, position.Column];
             
         }
 
@@ -31,7 +31,7 @@
             {
                 throw new BoardException("Already exists a piece in this position!");
             }
-            Pieces[position.Line, position.Column] = p;
+            Pieces[position.Row, position.Column] = p;
             p.Position = position;
         }
 
@@ -43,7 +43,7 @@
 
         public bool ValidPosition(Position position)
         {
-            bool valid = (position.Line<0 || position.Line >= Line || position.Column <0 || position.Column >= Column) ? false : true;
+            bool valid = (position.Row<0 || position.Row >= Row || position.Column <0 || position.Column >= Column) ? false : true;
             return valid; 
         }
 

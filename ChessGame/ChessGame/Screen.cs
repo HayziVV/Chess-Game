@@ -5,9 +5,10 @@ namespace ChessGame
     {
         public static void PrintBoard(Board board)
         {
-            for (int i = 0; i < board.Line; i++)
+            for (int i = 0; i < board.Row; i++)
             {
-                for (int j = 0; j < board.Line; j++)
+                Console.Write((board.Row - i) + " ");
+                for (int j = 0; j < board.Row; j++)
                 {
                     if (board.Piece(i, j) == null)
                     {

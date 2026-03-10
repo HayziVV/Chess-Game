@@ -9,11 +9,9 @@ namespace ChessGame
         {
             try
             {
-                Board board = new Board(8, 8);
-                board.AddPiece(new Rook(board, Color.Black), new Position(0, 0));
-                board.AddPiece(new Rook(board, Color.Black), new Position(1, 9));
-                board.AddPiece(new King(board, Color.Black), new Position(0, 1));
-                Screen.PrintBoard(board);
+                ChessPosition position = new ChessPosition('c', 7);
+                Console.WriteLine(position);
+                Console.WriteLine(position.toPosition());
             }
             catch (BoardException e)
             {

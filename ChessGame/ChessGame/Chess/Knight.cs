@@ -10,7 +10,7 @@ namespace ChessGame.Chess
 
         public override string ToString()
         {
-            return "2";
+            return "2 ";
         }
     }
 }
