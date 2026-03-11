@@ -1,4 +1,5 @@
-﻿using ChessGame.board;
+﻿using board;
+using Chess;
 namespace ChessGame
 {
     internal class Screen
@@ -21,7 +22,15 @@ namespace ChessGame
                 }
             Console.WriteLine();
             }
-            Console.WriteLine("  a  b  c  d  e  f  g  h");
+            Console.WriteLine("  a b c d e f g h");
+        }
+        
+        public static ChessPosition ReadChessPosition()
+        {
+            string s = Console.ReadLine();
+            char column = s[0];
+            int row = int.Parse(s[1] + "");
+            return new ChessPosition(column, row);
         }
         public static void PrintPiece(Piece piece)
         {

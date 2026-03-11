@@ -1,5 +1,5 @@
-﻿using ChessGame.board;
-using ChessGame.Chess;
+﻿using board;
+using Chess;
 
 namespace ChessGame
 {
@@ -9,16 +9,20 @@ namespace ChessGame
         {
             try
             {
-                Board board = new Board(8, 8);
-                board.AddPiece(new Rook(board, Color.Black), new Position(0, 0));
-                board.AddPiece(new Rook(board, Color.Black), new Position(1, 3));
-                board.AddPiece(new King(board, Color.Black), new Position(0, 2));
+                ChessMatch match = new ChessMatch();
 
-                board.AddPiece(new Rook(board, Color.White), new Position(0, 4));
-                board.AddPiece(new Rook(board, Color.White), new Position(0, 5));
-                board.AddPiece(new King(board, Color.White), new Position(0, 1));
+                while (!match.Finished)
+                {
+                    Console.Clear();
+                    Screen.PrintBoard(match.Board);
 
-                Screen.PrintBoard(board);
+                    Console.Write("Origin: ");
+                    Position origin = Screen.ReadChessPosition().toPosition();
+                    Console.Write("Destination: ");
+                    Position Destination = Screen.ReadChessPosition().toPosition();
+
+                    match.PerformMovement(origin, Destination);
+                }
             }
             catch (BoardException e)
             {

@@ -1,4 +1,4 @@
-﻿namespace ChessGame.board
+﻿namespace board
 {
     internal class Board
     {
@@ -23,6 +23,18 @@
             
             return Pieces[position.Row, position.Column];
             
+        }
+
+        public Piece RemovePiece(Position position)
+        {
+            if (Piece(position) == null)
+            {
+                return null;
+            }
+            Piece aux = Piece(position);
+            aux.Position = null;
+            Pieces[position.Row, position.Column] = null;
+            return aux;
         }
 
         public void AddPiece(Piece p, Position position)

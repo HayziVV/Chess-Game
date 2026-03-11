@@ -1,4 +1,4 @@
-﻿namespace ChessGame.board
+﻿namespace board
 {
     internal class Piece
     {
@@ -13,6 +13,11 @@
             Color = color;
             Board = board;
             MovementCounts = 0;
+        }
+
+        public void IncreaseMovementCount()
+        {
+            MovementCounts++;
         }
     }
 }

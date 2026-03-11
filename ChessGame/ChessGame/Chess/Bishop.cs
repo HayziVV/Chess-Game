@@ -1,5 +1,5 @@
-﻿using ChessGame.board;
-namespace ChessGame.Chess
+﻿using board;
+namespace Chess
 {
     class Bishop : Piece
     {

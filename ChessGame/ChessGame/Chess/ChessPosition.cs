@@ -1,6 +1,6 @@
-﻿using ChessGame.board;
+﻿using board;
 
-namespace ChessGame.Chess
+namespace Chess
 {
     internal class ChessPosition
     {
