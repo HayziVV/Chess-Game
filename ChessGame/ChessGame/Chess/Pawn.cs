@@ -3,9 +3,11 @@ namespace Chess
 {
     class Pawn : Piece
     {
+        private ChessMatch Match;
 
-        public Pawn(Board board, Color color) : base(board, color)
+        public Pawn(Board board, Color color, ChessMatch match) : base(board, color)
         {
+            Match = match;
         }
 
         private bool ExistEnemy(Position position)
@@ -43,6 +45,18 @@ namespace Chess
                 {
                     mat[position.Row, position.Column] = true;
                 }
+                //EnPassant
+                if(Position.Row == 3)
+                {
+                    Position left = new Position(Position.Row, Position.Column - 1);
+                    if(Board.ValidPosition(left) && ExistEnemy(left) && Board.Piece(left) == Match.VulnerableEnPassant){
+                        mat[left.Row - 1, left.Column] = true;
+                    }
+                    Position right = new Position(Position.Row, Position.Column + 1);
+                    if (Board.ValidPosition(right) && ExistEnemy(right) && Board.Piece(right) == Match.VulnerableEnPassant){
+                        mat[right.Row - 1, right.Column] = true;
+                    }
+                }
             }
             else
             {
@@ -65,6 +79,17 @@ namespace Chess
                 if (Board.ValidPosition(position) && ExistEnemy(position))
                 {
                     mat[position.Row, position.Column] = true;
+                }
+                if (Position.Row == 4)
+                {
+                    Position left = new Position(Position.Row, Position.Column - 1);
+                    if (Board.ValidPosition(left) && ExistEnemy(left) && Board.Piece(left) == Match.VulnerableEnPassant){
+                        mat[left.Row + 1, left.Column] = true;
+                    }
+                    Position right = new Position(Position.Row, Position.Column + 1);
+                    if (Board.ValidPosition(right) && ExistEnemy(right) && Board.Piece(right) == Match.VulnerableEnPassant){
+                        mat[right.Row + 1, right.Column] = true;
+                    }
                 }
             }
             return mat;
