@@ -22,6 +22,7 @@ A fully functional Chess System developed in **C#** and **.NET 10.0**. This proj
 2. Clone the repository:
    ```bash
    git clone https://github.com/HayziVV/Chess-Game.git
+3. Run the application
 
 📝 Notation
 K: King
