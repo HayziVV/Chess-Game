@@ -223,38 +223,38 @@ namespace Chess
         {
             // White Pieces
             AddNewPieces('a', 1, new Rook(Board, Color.White));
-            //AddNewPieces('b', 1, new Knight(Board, Color.White));
-            //AddNewPieces('c', 1, new Bishop(Board, Color.White));
-            //AddNewPieces('d', 1, new Queen(Board, Color.White));
+            AddNewPieces('b', 1, new Knight(Board, Color.White));
+            AddNewPieces('c', 1, new Bishop(Board, Color.White));
+            AddNewPieces('d', 1, new Queen(Board, Color.White));
             AddNewPieces('e', 1, new King(Board, Color.White));
-            //AddNewPieces('f', 1, new Bishop(Board, Color.White));
-            //AddNewPieces('g', 1, new Knight(Board, Color.White));
+            AddNewPieces('f', 1, new Bishop(Board, Color.White));
+            AddNewPieces('g', 1, new Knight(Board, Color.White));
             AddNewPieces('h', 1, new Rook(Board, Color.White));
-            //AddNewPieces('a', 2, new Pawn(Board, Color.White));
-            //AddNewPieces('b', 2, new Pawn(Board, Color.White));
-            //AddNewPieces('c', 2, new Pawn(Board, Color.White));
-            //AddNewPieces('d', 2, new Pawn(Board, Color.White));
-            //AddNewPieces('e', 2, new Pawn(Board, Color.White));
-            //AddNewPieces('f', 2, new Pawn(Board, Color.White));
-            //AddNewPieces('g', 2, new Pawn(Board, Color.White));
-            //AddNewPieces('h', 2, new Pawn(Board, Color.White));
+            AddNewPieces('a', 2, new Pawn(Board, Color.White));
+            AddNewPieces('b', 2, new Pawn(Board, Color.White));
+            AddNewPieces('c', 2, new Pawn(Board, Color.White));
+            AddNewPieces('d', 2, new Pawn(Board, Color.White));
+            AddNewPieces('e', 2, new Pawn(Board, Color.White));
+            AddNewPieces('f', 2, new Pawn(Board, Color.White));
+            AddNewPieces('g', 2, new Pawn(Board, Color.White));
+            AddNewPieces('h', 2, new Pawn(Board, Color.White));
             // Black Pieces
-            //AddNewPieces('a', 8, new Rook(Board, Color.Black));
-            //AddNewPieces('b', 8, new Knight(Board, Color.Black));
-            //AddNewPieces('c', 8, new Bishop(Board, Color.Black));
+            AddNewPieces('a', 8, new Rook(Board, Color.Black));
+            AddNewPieces('b', 8, new Knight(Board, Color.Black));
+            AddNewPieces('c', 8, new Bishop(Board, Color.Black));
             AddNewPieces('d', 8, new King(Board, Color.Black));
-            //AddNewPieces('e', 8, new Queen(Board, Color.Black));
-            //AddNewPieces('f', 8, new Bishop(Board, Color.Black));
-            //AddNewPieces('g', 8, new Knight(Board, Color.Black));
+            AddNewPieces('e', 8, new Queen(Board, Color.Black));
+            AddNewPieces('f', 8, new Bishop(Board, Color.Black));
+            AddNewPieces('g', 8, new Knight(Board, Color.Black));
             AddNewPieces('h', 8, new Rook(Board, Color.Black));
-            //AddNewPieces('a', 7, new Pawn(Board, Color.Black));
-            //AddNewPieces('b', 7, new Pawn(Board, Color.Black));
-            //AddNewPieces('c', 7, new Pawn(Board, Color.Black));
-            //AddNewPieces('d', 7, new Pawn(Board, Color.Black));
-            //AddNewPieces('e', 7, new Pawn(Board, Color.Black));
-            //AddNewPieces('f', 7, new Pawn(Board, Color.Black));
-            //AddNewPieces('g', 7, new Pawn(Board, Color.Black));
-            //AddNewPieces('h', 7, new Pawn(Board, Color.Black));
+            AddNewPieces('a', 7, new Pawn(Board, Color.Black));
+            AddNewPieces('b', 7, new Pawn(Board, Color.Black));
+            AddNewPieces('c', 7, new Pawn(Board, Color.Black));
+            AddNewPieces('d', 7, new Pawn(Board, Color.Black));
+            AddNewPieces('e', 7, new Pawn(Board, Color.Black));
+            AddNewPieces('f', 7, new Pawn(Board, Color.Black));
+            AddNewPieces('g', 7, new Pawn(Board, Color.Black));
+            AddNewPieces('h', 7, new Pawn(Board, Color.Black));
 
         }
     }

@@ -27,7 +27,7 @@ namespace Chess
 
         public override string ToString()
         {
-            return "2 ";
+            return "N ";
         }
     }
 }
