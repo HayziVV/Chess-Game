@@ -2,6 +2,7 @@
 using System.Reflection.PortableExecutable;
 using System.Collections.Generic;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace Chess
 {
@@ -59,12 +60,12 @@ namespace Chess
             }
 
             //EnPassant
-            if(p is Pawn)
+            if (p is Pawn)
             {
-                if(origin.Column != destination.Column && CapturedPiece == null)
+                if (origin.Column != destination.Column && CapturedPiece == null)
                 {
                     Position posP;
-                    if(p.Color == Color.White)
+                    if (p.Color == Color.White)
                     {
                         posP = new Position(destination.Row + 1, destination.Column);
                     }
@@ -108,13 +109,13 @@ namespace Chess
                 Board.AddPiece(R, originRook);
             }
             //EnPassant
-            if(p is Pawn)
+            if (p is Pawn)
             {
-                if(origin.Column != destination.Column && capturedPiece == VulnerableEnPassant)
+                if (origin.Column != destination.Column && capturedPiece == VulnerableEnPassant)
                 {
                     Piece piece = Board.RemovePiece(destination);
                     Position posP;
-                    if(p.Color == Color.White)
+                    if (p.Color == Color.White)
                     {
                         posP = new Position(3, destination.Column);
                     }
@@ -138,6 +139,20 @@ namespace Chess
                 throw new BoardException("You can't put yourself into check");
             }
 
+            Piece p = Board.Piece(destination);
+            //Pawn Promotion
+            if (p is Pawn)
+            {
+                if ((p.Color == Color.White && destination.Row == 0) || (p.Color == Color.Black && destination.Row == 7))
+                {
+                    p = Board.RemovePiece(destination);
+                    Pieces.Remove(p);
+                    Piece queen = new Queen(Board, p.Color);
+                    Board.AddPiece(queen, destination);
+                    Pieces.Add(queen);
+                }
+            }
+
             if (IsInCheck(Enemy(CurrentPlayer)))
             {
                 Check = true;
@@ -157,7 +172,6 @@ namespace Chess
                 ChangePlayer();
             }
 
-            Piece p = Board.Piece(destination);
             //EnPassant
             if (p is Pawn && (destination.Row == origin.Row - 2 || destination.Row == origin.Row + 2))
             {
