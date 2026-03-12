@@ -19,6 +19,10 @@
         {
             MovementCounts++;
         }
+        public void DecreaseMovementCount()
+        {
+            MovementCounts--;
+        }
 
         protected bool CanMove(Position position)
         {

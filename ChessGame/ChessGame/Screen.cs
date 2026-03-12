@@ -14,6 +14,10 @@ namespace ChessGame
             Console.WriteLine();
             Console.WriteLine("Turn: " + match.Turn);
             Console.WriteLine("Awaiting play from: " + match.CurrentPlayer);
+            if (match.Check)
+            {
+                Console.WriteLine("CHECK!");
+            }
         }
 
         public static void PrintCapturedPieces(ChessMatch match)
@@ -77,10 +81,19 @@ namespace ChessGame
 
         public static ChessPosition ReadChessPosition()
         {
-            string s = Console.ReadLine();
-            char column = s[0];
-            int row = int.Parse(s[1] + "");
-            return new ChessPosition(column, row);
+            string s = Console.ReadLine().ToLower();
+            char column;
+            int row;
+            if (s.Length == 2)
+            {
+                column = s[0];
+                row = s[1] - '0';
+                if ((row >= 1 && row <= 8) && (column >= 'a' && column <= 'h'))
+                {
+                    return new ChessPosition(column, row);
+                }
+            }
+            throw new BoardException("Invalid Position!");
         }
         public static void PrintPiece(Piece piece)
         {
