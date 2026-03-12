@@ -1,9 +1,44 @@
 ﻿using board;
 using Chess;
+using System.Collections.Generic;
 namespace ChessGame
 {
     internal class Screen
     {
+        public static void PrintMatch(ChessMatch match)
+        {
+
+            PrintBoard(match.Board);
+            Console.WriteLine();
+            PrintCapturedPieces(match);
+            Console.WriteLine();
+            Console.WriteLine("Turn: " + match.Turn);
+            Console.WriteLine("Awaiting play from: " + match.CurrentPlayer);
+        }
+
+        public static void PrintCapturedPieces(ChessMatch match)
+        {
+            Console.WriteLine("Captured Pieces: ");
+            Console.Write("White: ");
+            PrintSet(match.CapturedPieces(Color.White));
+            Console.WriteLine();
+            Console.Write("Black: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            PrintSet(match.CapturedPieces(Color.Black));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+        }
+
+        public static void PrintSet(HashSet<Piece> Set)
+        {
+            Console.Write("[");
+            foreach (Piece piece in Set)
+            {
+                Console.Write(piece + " ");
+            }
+            Console.Write("]");
+        }
         public static void PrintBoard(Board board)
         {
             for (int i = 0; i < board.Row; i++)
@@ -26,9 +61,9 @@ namespace ChessGame
                 Console.Write(board.Row - i + " ");
                 for (int j = 0; j < board.Row; j++)
                 {
-                    if (PossiblePositions[i, j]) 
+                    if (PossiblePositions[i, j])
                         Console.BackgroundColor = AltBackground;
-                    else 
+                    else
                         Console.BackgroundColor = OriginalBackground;
                     PrintPiece(board.Piece(i, j));
                     Console.BackgroundColor = OriginalBackground;
