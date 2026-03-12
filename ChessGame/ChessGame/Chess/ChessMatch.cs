@@ -36,6 +36,25 @@ namespace Chess
             {
                 Captured.Add(CapturedPiece);
             }
+
+            //Kingside Castling
+            if (p is King && destination.Column == origin.Column + 2)
+            {
+                Position originRook = new Position(origin.Row, origin.Column + 3);
+                Position destinationRook = new Position(origin.Row, origin.Column + 1);
+                Piece R = Board.RemovePiece(originRook);
+                R.IncreaseMovementCount();
+                Board.AddPiece(R, destinationRook);
+            }
+            //Queenside Castling
+            if (p is King && destination.Column == origin.Column - 2)
+            {
+                Position originRook = new Position(origin.Row, origin.Column - 4);
+                Position destinationRook = new Position(origin.Row, origin.Column - 1);
+                Piece R = Board.RemovePiece(originRook);
+                R.IncreaseMovementCount();
+                Board.AddPiece(R, destinationRook);
+            }
             return CapturedPiece;
         }
 
@@ -49,6 +68,24 @@ namespace Chess
                 Captured.Remove(capturedPiece);
             }
             Board.AddPiece(p, origin);
+            //Kingside Castling
+            if (p is King && destination.Column == origin.Column + 2)
+            {
+                Position originRook = new Position(origin.Row, origin.Column + 3);
+                Position destinationRook = new Position(origin.Row, origin.Column + 1);
+                Piece R = Board.RemovePiece(destinationRook);
+                R.DecreaseMovementCount();
+                Board.AddPiece(R, originRook);
+            }
+            //Queenside Castling
+            if (p is King && destination.Column == origin.Column - 2)
+            {
+                Position originRook = new Position(origin.Row, origin.Column - 4);
+                Position destinationRook = new Position(origin.Row, origin.Column - 1);
+                Piece R = Board.RemovePiece(destinationRook);
+                R.DecreaseMovementCount();
+                Board.AddPiece(R, originRook);
+            }
         }
 
         public void MakeMove(Position origin, Position destination)
@@ -81,7 +118,7 @@ namespace Chess
             }
         }
 
-        
+
         public void ValidateOriginPosition(Position origin)
         {
             if (Board.Piece(origin) == null)
@@ -226,7 +263,7 @@ namespace Chess
             AddNewPieces('b', 1, new Knight(Board, Color.White));
             AddNewPieces('c', 1, new Bishop(Board, Color.White));
             AddNewPieces('d', 1, new Queen(Board, Color.White));
-            AddNewPieces('e', 1, new King(Board, Color.White));
+            AddNewPieces('e', 1, new King(Board, Color.White, this));
             AddNewPieces('f', 1, new Bishop(Board, Color.White));
             AddNewPieces('g', 1, new Knight(Board, Color.White));
             AddNewPieces('h', 1, new Rook(Board, Color.White));
@@ -242,8 +279,8 @@ namespace Chess
             AddNewPieces('a', 8, new Rook(Board, Color.Black));
             AddNewPieces('b', 8, new Knight(Board, Color.Black));
             AddNewPieces('c', 8, new Bishop(Board, Color.Black));
-            AddNewPieces('d', 8, new King(Board, Color.Black));
-            AddNewPieces('e', 8, new Queen(Board, Color.Black));
+            AddNewPieces('d', 8, new Queen(Board, Color.Black));
+            AddNewPieces('e', 8, new King(Board, Color.Black, this));
             AddNewPieces('f', 8, new Bishop(Board, Color.Black));
             AddNewPieces('g', 8, new Knight(Board, Color.Black));
             AddNewPieces('h', 8, new Rook(Board, Color.Black));
