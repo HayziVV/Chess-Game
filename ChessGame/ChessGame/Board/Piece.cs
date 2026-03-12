@@ -25,6 +25,27 @@
             Piece p = Board.Piece(position);
             return p == null || p.Color != Color;
         }
+
+        public bool ExistPossibleMoviments()
+        {
+            bool[,] mat = PossibleMoviments();
+            for(int i=0; i < Board.Row; i++)
+            {
+                for(int j=0; j<Board.Column; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public bool CanMoveTo(Position destination)
+        {
+            return PossibleMoviments()[destination.Row, destination.Column];
+        }
+
         public abstract bool[,] PossibleMoviments();
 
         

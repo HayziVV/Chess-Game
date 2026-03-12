@@ -7,31 +7,49 @@ namespace ChessGame
     {
         static void Main(string[] args)
         {
-            try
             {
-                ChessMatch match = new ChessMatch();
-
-                while (!match.Finished)
+                try
                 {
-                    Console.Clear();
-                    Screen.PrintBoard(match.Board);
-                    
-                    Console.Write("Origin: ");
-                    Position origin = Screen.ReadChessPosition().toPosition();
-                    bool[,] PossiblePositions = match.Board.Piece(origin).PossibleMoviments();
 
-                    Console.Clear();
-                    Screen.PrintBoard(match.Board, PossiblePositions);
-                    Console.WriteLine();
-                    Console.Write("Destination: ");
-                    Position Destination = Screen.ReadChessPosition().toPosition();
+                    ChessMatch match = new ChessMatch();
+                    while (!match.Finished)
+                    {
+                        try
+                        {
+                            Console.Clear();
+                            Screen.PrintBoard(match.Board);
+                            Console.WriteLine();
+                            Console.WriteLine("Turn: " + match.Turn);
+                            Console.WriteLine("Awaiting play from: " + match.CurrentPlayer);
+                            Console.WriteLine();
+                            Console.Write("Origin: ");
+                            Position origin = Screen.ReadChessPosition().toPosition();
+                            match.ValidateOriginPosition(origin);
 
-                    match.PerformMovement(origin, Destination);
+                            bool[,] PossiblePositions = match.Board.Piece(origin).PossibleMoviments();
+
+                            Console.Clear();
+                            Screen.PrintBoard(match.Board, PossiblePositions);
+
+                            Console.WriteLine();
+                            Console.Write("Destination: ");
+                            Position destination = Screen.ReadChessPosition().toPosition();
+                            match.ValidateDestinationPosition(origin, destination);
+
+                            match.MakeMove(origin, destination);
+                        }
+                        catch (BoardException e)
+                        {
+                            Console.WriteLine(e.Message);
+                            Console.Write("Press enter key to continue...");
+                            Console.ReadLine();
+                        }
+                    }
                 }
-            }
-            catch (BoardException e)
-            {
-                Console.WriteLine(e.Message);
+                catch (BoardException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
         }
     }
