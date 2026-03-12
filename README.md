@@ -25,6 +25,7 @@ A fully functional Chess System developed in **C#** and **.NET 10.0**. This proj
 3. Run the application
 
 📝 Notation
+
 K: King
 
 N: Knight
