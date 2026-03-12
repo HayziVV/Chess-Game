@@ -10,7 +10,7 @@ namespace Chess
         public Board Board { get; private set; }
         public int Turn { get; set; }
         public Color CurrentPlayer { get; set; }
-        public bool Finished { get; private set; }
+        public bool Finished { get; private set; } = false;
         private HashSet<Piece> Pieces;
         private HashSet<Piece> Captured;
         public bool Check { get; private set; }
@@ -25,6 +25,7 @@ namespace Chess
             Captured = new HashSet<Piece>();
             AddPieces();
         }
+
         public Piece PerformMovement(Position origin, Position destination)
         {
             Piece p = Board.RemovePiece(origin);
@@ -68,10 +69,19 @@ namespace Chess
             {
                 Check = false;
             }
-            Turn++;
-            ChangePlayer();
+
+            if (IsCheckmate(Enemy(CurrentPlayer)))
+            {
+                Finished = true;
+            }
+            else
+            {
+                Turn++;
+                ChangePlayer();
+            }
         }
 
+        
         public void ValidateOriginPosition(Position origin)
         {
             if (Board.Piece(origin) == null)
@@ -156,6 +166,36 @@ namespace Chess
                 }
             }
             return false;
+        }
+        public bool IsCheckmate(Color color)
+        {
+            if (!IsInCheck(color))
+            {
+                return false;
+            }
+            foreach (Piece x in PiecesInGame(color))
+            {
+                bool[,] mat = x.PossibleMoviments();
+                for (int i = 0; i < Board.Row; i++)
+                {
+                    for (int j = 0; j < Board.Column; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Position origin = x.Position;
+                            Position destination = new Position(i, j);
+                            Piece capturedPiece = PerformMovement(origin, destination);
+                            bool testCheck = IsInCheck(color);
+                            UndoMovement(origin, destination, capturedPiece);
+                            if (!testCheck)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         public HashSet<Piece> PiecesInGame(Color color)
