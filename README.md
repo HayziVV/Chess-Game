@@ -21,7 +21,7 @@ A fully functional Chess System developed in **C#** and **.NET 10.0**. This proj
 1. Make sure you have the **.NET 10 SDK** installed.
 2. Clone the repository:
    ```bash
-   git clone [https://github.com/HayziVV/ChessGame.git](https://github.com/HayziVV/ChessGame.git)
+   git clone [https://github.com/HayziVV/Chess-Game.git](https://github.com/HayziVV/Chess-Game.git)
 
 📝 Notation
 K: King
